@@ -1,0 +1,26 @@
+{
+  "name": "tea-shop-miniprogram",
+  "version": "1.0.0",
+  "description": "茶叶商城微信小程序",
+  "main": "miniprogram/app.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
+    "deploy": "node scripts/deploy.js",
+    "deploy:cloud": "wx cloud deploy",
+    "deploy:local": "npm run build && node scripts/deploy.js",
+    "test": "node scripts/test-security-rules.js",
+    "build:cloud": "npm run build && npm run deploy:cloud",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  },
+  "devDependencies": {
+    "@cloudbase/cli": "^1.0.0",
+    "glob": "^13.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

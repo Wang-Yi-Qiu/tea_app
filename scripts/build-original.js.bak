@@ -1,0 +1,181 @@
+#!/usr/bin/env node
+
+/**
+ * 小程序构建脚本
+ */
+
+const fs = require('fs');
+const path = require('path');
+const glob = require('glob');
+
+console.log('🚀 开始构建茶叶商城小程序...\n');
+
+function ensureDistDir() {
+  const distPath = path.join(process.cwd(), 'dist');
+  if (!fs.existsSync(distPath)) {
+    fs.mkdirSync(distPath, { recursive: true });
+  }
+  return distPath;
+}
+
+function copyFiles(src, dest, patterns) {
+  console.log(`📁 复制文件: ${src} -> ${dest}`);
+
+  patterns.forEach(pattern => {
+    const patternPath = path.join(src, pattern);
+    console.log(`🔍 搜索模式: ${patternPath}`);
+
+    try {
+      const files = glob.sync(patternPath, {
+        dot: false,
+        nonull: true
+      });
+
+      files.forEach(file => {
+        const relativePath = path.relative(src, file);
+        const destFile = path.join(dest, relativePath);
+
+        if (fs.existsSync(file) && fs.statSync(file).isFile()) {
+          const destDir = path.dirname(destFile);
+          if (!fs.existsSync(destDir)) {
+            fs.mkdirSync(destDir, { recursive: true });
+          }
+          fs.copyFileSync(file, destFile);
+          console.log(`📄 复制: ${relativePath}`);
+        }
+      });
+    } catch (error) {
+      console.warn(`⚠️  模式 ${pattern} 匹配失败:`, error.message);
+    }
+  });
+}
+
+function generateAppJson() {
+  const appJson = {
+    pages: [
+      "pages/home/index",
+      "pages/products/list",
+      "pages/products/detail",
+      "pages/products/search",
+      "pages/cart/index",
+      "pages/order/confirm",
+      "pages/order/payment",
+      "pages/order/result",
+      "pages/user/profile",
+      "pages/user/orders",
+      "pages/user/points",
+      "pages/user/address",
+      "pages/admin/login",
+      "pages/admin/dashboard",
+      "pages/admin/products"
+    ],
+    window: {
+      backgroundTextStyle: "light",
+      navigationBarBackgroundColor: "#f8f6e4",
+      navigationBarTitleText: "茶叶商城",
+      navigationBarTextStyle: "white"
+    },
+    tabBar: {
+      color: "#7A7E8",
+      selectedColor: "#1aad19",
+      backgroundColor: "#f8f6e4",
+      borderStyle: "black",
+      list: [
+        {
+          pagePath: "pages/home/index",
+          text: "首页",
+          iconPath: "images/tab/home.png",
+          selectedIconPath: "images/tab/home-active.png"
+        },
+        {
+          pagePath: "pages/products/list",
+          text: "茶叶",
+          iconPath: "images/tab/tea.png",
+          selectedIconPath: "images/tab/tea-active.png"
+        },
+        {
+          pagePath: "pages/cart/index",
+          text: "购物车",
+          iconPath: "images/tab/cart.png",
+          selectedIconPath: "images/tab/cart-active.png"
+        },
+        {
+          pagePath: "pages/user/profile",
+          text: "我的",
+          iconPath: "images/tab/user.png",
+          selectedIconPath: "images/tab/user-active.png"
+        }
+      ]
+    },
+    permission: {
+      "scope.userLocation": {
+        desc: "您的位置信息将用于收货地址"
+      }
+    },
+    networkTimeout: 60000,
+    usingComponents: {},
+    sitemapLocation: "sitemap.json"
+  };
+
+  const distPath = ensureDistDir();
+  fs.writeFileSync(
+    path.join(distPath, 'app.json'),
+    JSON.stringify(appJson, null, 2)
+  );
+  console.log('✅ app.json 生成完成');
+}
+
+function main() {
+  try {
+    // 创建输出目录
+    const distPath = ensureDistDir();
+
+    // 复制小程序页面文件
+    console.log('📁 复制小程序文件...');
+    copyFiles(
+      path.join(process.cwd(), 'miniprogram'),
+      path.join(distPath, 'miniprogram'),
+      [
+        'app.js',
+        'app.json',
+        'sitemap.json',
+        'pages/**/*',
+        'components/**/*',
+        'images/**/*'
+      ]
+    );
+
+    // 复制云函数文件
+    console.log('☁️ 复制云函数文件...');
+    copyFiles(
+      path.join(process.cwd(), 'cloudfunctions'),
+      path.join(distPath, 'cloudfunctions'),
+      [
+        '**/*.js',
+        '**/*.json',
+        'src/**/*',
+        'security-rules-config.json',
+        'test-security-rules.js'
+      ]
+    );
+
+    // 生成app.json
+    console.log('📄 生成app.json...');
+    generateAppJson();
+
+    console.log('✅ 构建完成！');
+    console.log('📂 输出目录:', distPath);
+
+    return { success: true, distPath };
+
+  } catch (error) {
+    console.error('❌ 构建失败:', error.message);
+    return { success: false, error: error.message };
+  }
+}
+
+if (require.main === module) {
+  module.exports = main;
+} else {
+  main();
+}
