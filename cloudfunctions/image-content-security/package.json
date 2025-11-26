@@ -1,0 +1,27 @@
+{
+  "name": "image-content-security",
+  "version": "1.0.0",
+  "description": "图片内容安全检测云函数 - 集成腾讯云图片内容安全API",
+  "main": "index.js",
+  "dependencies": {
+    "@cloudbase/js-sdk": "latest",
+    "tencentcloud-sdk-nodejs": "^4.0.0",
+    "wx-server-sdk": "latest"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "keywords": [
+    "wechat-miniprogram",
+    "content-security",
+    "tencent-cloud",
+    "image-moderation",
+    "community-content"
+  ],
+  "author": "Claude AI",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

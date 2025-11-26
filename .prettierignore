@@ -1,0 +1,18 @@
+node_modules/
+miniprogram/
+cloudfunctions/dist/
+coverage/
+*.log
+package-lock.json
+yarn.lock
+.env*
+
+# 微信小程序构建产物
+.project
+.project.config.json
+.setting
+.app.js
+
+# 云开发配置
+.cloud/
+cloudbaselist

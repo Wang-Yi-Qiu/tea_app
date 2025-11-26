@@ -1,0 +1,14 @@
+node_modules/
+miniprogram/
+cloudfunctions/dist/
+coverage/
+*.log
+.env*
+.project
+.project.config.json
+.setting
+.app.js
+.cloud/
+cloudbaselist
+.DS_Store
+Thumbs.db

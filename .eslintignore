@@ -1,0 +1,17 @@
+node_modules/
+miniprogram/
+cloudfunctions/dist/
+coverage/
+*.log
+.env*
+
+# 微信小程序特定
+.project
+.project.config.json
+.setting
+.last挑选
+.app.js
+
+# 云开发特定
+.cloud/
+cloudbaselist
