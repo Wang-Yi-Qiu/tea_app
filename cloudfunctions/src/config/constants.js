@@ -1,0 +1,133 @@
+// cloud/functions/src/config/constants.js
+
+module.exports = {
+  // 错误码定义
+  ERROR_CODES: {
+    SUCCESS: 0,
+    SYSTEM_ERROR: -1,
+    PARAM_ERROR: -2,
+    PERMISSION_DENIED: -3,
+    RESOURCE_NOT_FOUND: -4,
+    RESOURCE_ALREADY_EXISTS: -5,
+    RATE_LIMIT_EXCEEDED: -6,
+    USER_NOT_FOUND: 1001,
+    INSUFFICIENT_INVENTORY: 1002,
+    ORDER_NOT_FOUND: 1003,
+    INSUFFICIENT_POINTS: 1004,
+    CONTENT_VIOLATION: 1005,
+    PAYMENT_FAILED: 1006,
+    INVALID_STATUS: 1007,
+    WECHAT_PAY_PARAM_ERROR: 2001,
+    WECHAT_PAY_SIGN_ERROR: 2002,
+    WECHAT_PAY_NETWORK_ERROR: 2003,
+    WECHAT_PAY_USER_CANCEL: 2004,
+    WECHAT_PAY_INSUFFICIENT_BALANCE: 2005,
+    BUSINESS_ERROR: 3001,
+    ADMIN_AUTH_FAILED: 3002,
+    CONTENT_MODERATION_FAILED: 3003,
+    SKU_GENERATION_FAILED: 3004,
+    INVENTORY_RESERVATION_FAILED: 3005,
+    TRANSACTION_FAILED: 3006,
+    CONFIG_ERROR: 3007,
+    VALIDATION_ERROR: 3008,
+    UNKNOWN_ERROR: 9999
+  },
+
+  // 业务常量
+  BUSINESS: {
+    ORDER_STATUS: {
+      PENDING_PAYMENT: 'pending_payment',
+      PAID: 'paid',
+      PROCESSING: 'processing',
+      SHIPPED: 'shipped',
+      COMPLETED: 'completed',
+      CANCELLED: 'cancelled'
+    },
+    PAYMENT_METHOD: {
+      WECHAT_PAY: 'wechat_pay',
+      POINTS: 'points'
+    },
+    INVENTORY_STATUS: {
+      AVAILABLE: 'available',
+      RESERVED: 'reserved',
+      OUT_OF_STOCK: 'out_of_stock',
+      INACTIVE: 'inactive'
+    },
+    USER_LEVEL: {
+      BRONZE: 'bronze',
+      SILVER: 'silver',
+      GOLD: 'gold',
+      DIAMOND: 'diamond'
+    },
+    PRODUCT_CATEGORY: {
+      GREEN_TEA: '绿茶',
+      BLACK_TEA: '红茶',
+      OOLONG_TEA: '乌龙茶',
+      WHITE_TEA: '白茶',
+      YELLOW_TEA: '黄茶',
+      DARK_TEA: '黑茶',
+      FLOWER_TEA: '花茶',
+      PUERH_TEA: '普洱茶',
+      TEA_BAGS: '茶包',
+      TEA_SETS: '茶具',
+      TEA_ACCESSORIES: '茶道'
+    },
+    CONTENT_MODERATION: {
+      PENDING: 'pending',
+      APPROVED: 'approved',
+      REJECTED: 'rejected',
+      AUTO_APPROVED: 'auto_approved'
+    },
+    ADMIN_PERMISSIONS: {
+      PRODUCT_MANAGE: 'product.manage',
+      ORDER_MANAGE: 'order.manage',
+      USER_MANAGE: 'user.manage',
+      COMMUNITY_MODERATE: 'community.moderate',
+      POINTS_MANAGE: 'points.manage',
+      SYSTEM_CONFIG: 'system.config'
+    }
+  },
+
+  // 默认配置
+  DEFAULT_CONFIG: {
+    PAGE_SIZE: 20,
+    CART_EXPIRE_MINUTES: 30,
+    ORDER_EXPIRE_MINUTES: 15,
+    POINTS_EARN_RATE: 0.01,
+    POINTS_REDEEM_RATE: 100,
+    MIN_ORDER_AMOUNT: 10,
+    MAX_POINTS_USE_RATIO: 0.5,
+    INVENTORY_LOW_STOCK_THRESHOLD: 10,
+    MAX_IMAGES_PER_PRODUCT: 5,
+    FILE_UPLOAD_SIZE_LIMIT: 5 * 1024 * 1024, // 5MB
+    CACHE_EXPIRE_SECONDS: 3600,
+    SHIPPING_FEE_DEFAULT: 12,
+    SHIPPING_FREE_AMOUNT: 199
+    SEARCH_RESULTS_LIMIT: 100
+    CONTENT_AUTO_APPROVE_THRESHOLD: 0.9,
+    CONTENT_MANUAL_REVIEW_THRESHOLD: 0.7,
+    AUDIT_LOG_RETENTION_DAYS: 90,
+    SESSION_TIMEOUT_MINUTES: 30,
+    MAX_LOGIN_ATTEMPTS: 5,
+    PASSWORD_MIN_LENGTH: 8,
+    UPLOAD_IMAGE_FORMATS: ['jpg', 'jpeg', 'png'],
+    MAX_ADDRESS_PER_USER: 10
+    ORDER_STATUS_TIMEOUT_MINUTES: 60
+    PAYMENT_TIMEOUT_MINUTES: 15
+    API_CALL_FREQUENCY_LIMITS: {
+      GET_PRODUCTS: 100,
+      MANAGE_CART: 50,
+      CREATE_ORDER: 10,
+      GET_USER_INFO: 30,
+      MANAGE_POST: 20,
+      GET_POSTS: 100,
+      MODERATE_CONTENT: 20,
+      ADMIN_AUTH: 10
+      POINTS_TRANSACTION: 20
+      PRODUCT_MANAGE: 5,
+      ORDER_MANAGE: 5
+      USER_MANAGE: 5
+      SYSTEM_CONFIG: 2
+    }
+  }
+}

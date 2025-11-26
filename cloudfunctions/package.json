@@ -1,0 +1,19 @@
+{
+  "name": "tea-shop-cloud-functions",
+  "version": "1.0.0",
+  "description": "茶叶商城微信小程序云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "deploy": "wx cloud deploy"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

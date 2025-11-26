@@ -585,7 +585,7 @@ const smartRetryManager = new SmartRetryManager();
 /**
  * 云函数入口
  */
-exports.main = async (event, context) => {
+exports.main = async (event, cloudContext) => {
   const { action, operation_type, operation_data, context, filters } = event;
 
   try {
