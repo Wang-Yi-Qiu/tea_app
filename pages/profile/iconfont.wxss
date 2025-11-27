@@ -1,0 +1,61 @@
+/* 个人中心图标字体 */
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_2831191_xxxi0i2hfa.woff2?t=1668353913091') format('woff2'),
+       url('//at.alicdn.com/t/font_2831191_xxxi0i2hfa.woff?t=1668353913091') format('woff'),
+       url('//at.alicdn.com/t/font_2831191_xxxi0i2hfa.ttf?t=1668353913091') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 32rpx;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 中国风茶叶相关图标 */
+.icon-settings:before {
+  content: "\e600";
+}
+
+.icon-order:before {
+  content: "\e601";
+}
+
+.icon-favorite:before {
+  content: "\e602";
+}
+
+.icon-location:before {
+  content: "\e603";
+}
+
+.icon-gift:before {
+  content: "\e604";
+}
+
+.icon-help:before {
+  content: "\e605";
+}
+
+.icon-service:before {
+  content: "\e606";
+}
+
+.icon-arrow-right:before {
+  content: "\e607";
+}
+
+/* 装饰性图标 */
+.icon-tea-leaf:before {
+  content: "\e608";
+}
+
+.icon-tea-cup:before {
+  content: "\e609";
+}
+
+.icon-seal:before {
+  content: "\e610";
+}
