@@ -99,7 +99,7 @@ class OrderService {
           errmsg: 'success',
           data: {
             orderId: orderResult._id
-            orderNo
+            orderNo,
           amount: orderData.amount
           items: orderData.items,
             status: orderData.status,
