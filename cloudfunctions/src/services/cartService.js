@@ -120,6 +120,16 @@ class CartService {
       const newAvailable = sku.inventory.available + quantityDiff
       const newReserved = sku.inventory.reserved + quantityDiff
 
+      // 更新SKU库存
+      await this.db.update('skus', sku._id, {
+        data: {
+          inventory: {
+            available: newAvailable,
+            reserved: newReserved
+          }
+        }
+      })
+
       // 更新购物车项目数量
       const result = await cloud.callFunction({
         name: 'manageCart',
@@ -171,8 +181,6 @@ class CartService {
 
       // 释放库存
       const quantity = cartItem.quantity
-
-      // 更新SKU库存
       await this.db.update('skus', sku._id, {
         data: {
           inventory: {
@@ -187,9 +195,7 @@ class CartService {
         skuId: cartItem.skuId,
         status: constants.BUSINESS.INVENTORY_STATUS.RESERVED
       }).update({
-        data: {
-          status: constants.BUSINESS.INVENTORY_STATUS.RELEASED
-        }
+        status: constants.BUSINESS.INVENTORY_STATUS.RELEASED
       })
 
       // 移除购物车项目
@@ -201,7 +207,11 @@ class CartService {
         }
       })
 
-      return result.result
+      if (result.result.errcode === constants.ERROR_CODES.SUCCESS) {
+        return result.result
+      } else {
+        return result.result
+      }
     } catch (error) {
       console.error('移除商品失败:', error)
       return {
@@ -225,9 +235,11 @@ class CartService {
           index: 2,
           text: ''
         })
-      }
 
-      return result.result
+        return result.result
+      } else {
+        return result.result
+      }
     } catch (error) {
       console.error('清空购物车失败:', error)
       return {
@@ -236,5 +248,6 @@ class CartService {
       }
     }
   }
+}
 
-  module.exports = new CartService()
+module.exports = new CartService()
