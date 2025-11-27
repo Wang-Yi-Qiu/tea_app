@@ -1,0 +1,299 @@
+<!--pages/products/detail.wxml-->
+<view class="container" wx:if="{{product}}">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="nav-left" bindtap="onGoBack">
+      <text class="nav-icon">←</text>
+    </view>
+    <view class="nav-center">
+      <text class="nav-title">商品详情</text>
+    </view>
+    <view class="nav-right" bindtap="onShare">
+      <text class="nav-icon">⋮</text>
+    </view>
+  </view>
+
+  <!-- 产品图片轮播 -->
+  <view class="product-images">
+    <swiper class="image-swiper" indicator-dots="{{true}}" autoplay="{{false}}"
+             indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#ee4b2b">
+      <swiper-item wx:for="{{product.images}}" wx:key="index">
+        <image class="main-image" src="{{item.url}}" mode="aspectFill" bindtap="onImagePreview" data-src="{{item.url}}" />
+      </swiper-item>
+    </swiper>
+
+    <!-- 轮播指示器 -->
+    <view class="carousel-indicators">
+      <view class="indicator {{index === 0 ? 'active' : ''}}" wx:for="{{product.images}}" wx:key="index"></view>
+    </view>
+  </view>
+
+  <!-- 产品信息卡片 -->
+  <view class="product-info-card">
+    <view class="product-header">
+      <view class="title-section">
+        <text class="product-name">{{product.name || '流云纹玉瓷茶具'}}</text>
+        <text class="product-subtitle">匠心手作，品味东方雅致生活</text>
+      </view>
+      <view class="favorite-btn" bindtap="onToggleFavorite">
+        <text class="favorite-icon">{{isFavorited ? '❤' : '♡'}}</text>
+      </view>
+    </view>
+
+    <view class="price-section">
+      <text class="price-symbol">¥</text>
+      <text class="final-price">{{selectedSku.price || '288.00'}}</text>
+      <view class="sales-info">
+        <text class="sales-text">已售 {{product.sold || '300+'}} 件</text>
+      </view>
+    </view>
+
+    <view class="spec-preview">
+      <view class="spec-item">
+        <text class="spec-label">规格</text>
+        <text class="spec-value">{{currentSpecName || '单壶四杯 · 礼盒装'}}</text>
+      </view>
+      <view class="spec-arrow">
+        <text class="arrow-icon">></text>
+      </view>
+    </view>
+
+    <view class="price-section">
+      <view class="price-main">
+        <text class="currency-symbol">¥</text>
+        <text class="final-price">{{selectedSku.price}}</text>
+      </view>
+      <view class="price-info">
+        <text class="base-price">原价 ¥{{product.basePrice}}</text>
+        <view class="discount-tag" wx:if="{{product.basePrice > selectedSku.price}}">
+          <text class="discount-text">省{{product.basePrice - selectedSku.price}}元</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="product-description">
+      <text class="description-text">{{product.description}}</text>
+      <view class="description-tags">
+        <text wx:for="{{product.tags}}" wx:key="*index" class="desc-tag">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 规格选择 -->
+  <view class="specs-section">
+    <view class="section-title">
+      <view class="title-decoration">
+        <view class="decoration-dot"></view>
+        <text class="text-primary">选择规格</text>
+        <view class="decoration-dot"></view>
+      </view>
+    </view>
+
+    <!-- 材质选择 -->
+    <view class="spec-group">
+      <view class="spec-header">
+        <text class="spec-label">材质工艺</text>
+        <view class="spec-desc">精工细作，品质保证</view>
+      </view>
+      <view class="spec-options">
+        <view wx:for="{{product.specs.materials}}"
+              wx:key="id"
+              class="spec-option {{selectedSpecs.material === item.id ? 'selected' : ''}}"
+              bindtap="onSpecChange"
+              data-type="material"
+              data-value="{{item.id}}">
+          <view class="spec-content">
+            <text class="spec-name">{{item.name}}</text>
+            <view class="spec-feature" wx:if="{{item.feature}}">{{item.feature}}</view>
+          </view>
+          <text class="spec-price" wx:if="{{item.price > 0}}">+¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 容量选择 -->
+    <view class="spec-group">
+      <view class="spec-header">
+        <text class="spec-label">套装规格</text>
+        <view class="spec-desc">满足不同需求</view>
+      </view>
+      <view class="spec-options">
+        <view wx:for="{{product.specs.capacities}}"
+              wx:key="id"
+              class="spec-option {{selectedSpecs.capacity === item.id ? 'selected' : ''}}"
+              bindtap="onSpecChange"
+              data-type="capacity"
+              data-value="{{item.id}}">
+          <view class="spec-content">
+            <text class="spec-name">{{item.name}}</text>
+            <view class="spec-capacity-info">{{item.capacity}}</view>
+          </view>
+          <text class="spec-price" wx:if="{{item.price > 0}}">+¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 等级选择 -->
+    <view class="spec-group">
+      <view class="spec-header">
+        <text class="spec-label">品质等级</text>
+        <view class="spec-desc">分级甄选，物有所值</view>
+      </view>
+      <view class="spec-options">
+        <view wx:for="{{product.specs.grades}}"
+              wx:key="id"
+              class="spec-option {{selectedSpecs.grade === item.id ? 'selected' : ''}}"
+              bindtap="onSpecChange"
+              data-type="grade"
+              data-value="{{item.id}}">
+          <view class="spec-content">
+            <text class="spec-name">{{item.name}}</text>
+            <view class="spec-grade-badge" wx:if="{{item.badge}}">{{item.badge}}</view>
+          </view>
+          <text class="spec-price" wx:if="{{item.price > 0}}">+¥{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 品质保证 -->
+  <view class="quality-guarantee">
+    <view class="guarantee-title">
+      <view class="decoration-line short"></view>
+      <text class="title-text">品质保证</text>
+      <view class="decoration-line short"></view>
+    </view>
+    <view class="guarantee-features">
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">正品质瓷</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">手工制作</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">传统工艺</text>
+      </view>
+      <view class="feature-item">
+        <text class="feature-icon">✓</text>
+        <text class="feature-text">包装精美</text>
+      </view>
+    </view>
+  </view>
+
+    <!-- 详情标签页 -->
+    <view class="detail-tabs">
+      <view class="tab-header">
+        <view class="tab-item {{currentTab === 'detail' ? 'active' : ''}}" bindtap="onTabChange" data-tab="detail">
+          <text class="tab-text">商品详情</text>
+        </view>
+        <view class="tab-item {{currentTab === 'reviews' ? 'active' : ''}}" bindtap="onTabChange" data-tab="reviews">
+          <text class="tab-text">用户评价</text>
+        </view>
+      </view>
+
+      <!-- 详情内容 -->
+      <view class="tab-content" wx:if="{{currentTab === 'detail'}}">
+        <text class="detail-description">
+          此套茶具采用景德镇高白瓷，质地细腻，釉色温润如玉。器身饰以手绘流云纹，线条流畅，意境悠远。一壶四杯，器型典雅，无论是自用或赠礼，皆显不凡品味。
+        </text>
+
+        <!-- 详情图片 -->
+        <view class="detail-images">
+          <image class="detail-image"
+                 src="https://via.placeholder.com/375x200/8B4513/FFFFFF?text=茶具纹理展示"
+                 mode="aspectFill" />
+          <image class="detail-image"
+                 src="https://via.placeholder.com/375x200/8B4513/FFFFFF?text=茶道场景展示"
+                 mode="aspectFill" />
+        </view>
+      </view>
+
+      <!-- 评价内容 -->
+      <view class="tab-content" wx:if="{{currentTab === 'reviews'}}">
+        <view class="reviews-placeholder">
+          <text class="placeholder-text">用户评价功能开发中...</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 库存信息 -->
+  <view wx:if="{{selectedSku}}" class="inventory-info">
+    <view class="stock-content">
+      <view class="stock-main">
+        <text class="stock-text">库存数量</text>
+        <text class="stock-value {{selectedSku.inventory.available < 10 ? 'low-stock' : ''}}">{{selectedSku.inventory.available}}件</text>
+      </view>
+      <view class="stock-status" wx:if="{{selectedSku.inventory.available < 10}}">
+        <text class="stock-warning">⚠ 库存紧张</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数量选择 -->
+  <view class="quantity-section">
+    <view class="section-title">
+      <view class="decoration-dot"></view>
+      <text class="text-primary">购买数量</text>
+      <view class="decoration-dot"></view>
+    </view>
+    <view class="quantity-selector">
+      <view class="quantity-control">
+        <view class="quantity-btn decrease {{quantity <= 1 ? 'disabled' : ''}}"
+              bindtap="onQuantityChange"
+              data-quantity="{{quantity - 1}}"
+              disabled="{{quantity <= 1}}">
+          <text class="btn-text">−</text>
+        </view>
+        <view class="quantity-value">{{quantity}}</view>
+        <view class="quantity-btn increase {{selectedSku && quantity >= selectedSku.inventory.available ? 'disabled' : ''}}"
+              bindtap="onQuantityChange"
+              data-quantity="{{quantity + 1}}"
+              disabled="{{selectedSku && quantity >= selectedSku.inventory.available}}">
+          <text class="btn-text">+</text>
+        </view>
+      </view>
+      <view class="quantity-tips">
+        <text class="tips-text">建议购买1-2套，更适合收藏使用</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <view class="action-main">
+      <button class="btn-add-cart {{addingToCart ? 'loading' : ''}}"
+              bindtap="onAddToCart"
+              disabled="{{!selectedSku || selectedSku.inventory.available < quantity || addingToCart}}">
+        <view wx:if="{{!addingToCart}}" class="btn-content">
+          <text class="btn-icon">🛒</text>
+          <text class="btn-text">加入购物车</text>
+        </view>
+        <view wx:else class="btn-loading">
+          <view class="loading-spinner-small"></view>
+          <text class="loading-text">添加中...</text>
+        </view>
+      </button>
+
+      <button class="btn-buy-now"
+              bindtap="onBuyNow"
+              disabled="{{!selectedSku || selectedSku.inventory.available < quantity}}">
+        <view class="btn-content">
+          <text class="btn-icon">⚡</text>
+          <text class="btn-text">立即购买</text>
+        </view>
+      </button>
+    </view>
+
+    <view class="action-tips">
+      <text class="tips-text">⏰ 7天无理由退换 • 📦 全国包邮</text>
+    </view>
+  </view>
+
+<!-- 加载状态 -->
+<view class="loading-overlay" wx:if="{{loading}}">
+  <view class="loading-spinner"></view>
+</view>

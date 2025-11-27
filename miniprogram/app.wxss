@@ -1,0 +1,125 @@
+/* 茶叶商城 - 全局样式 */
+
+/* Material Icons 字体需要时再引入 */
+
+page {
+  background-color: #f8f8f8;
+  color: #333;
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* 中国风色彩变量 */
+page {
+  --brand-indigo: #465d62; /* 黛青 */
+  --brand-offwhite: #f5f3f0; /* 米白 */
+  --brand-vermilion: #c83c23; /* 朱红 */
+  --brand-earthy: #d2a065; /* 土黄 */
+  --brand-text-primary: #2d373a;
+  --brand-text-secondary: #6a7b80;
+  --brand-text-primary-dark: #e0e4e5;
+  --brand-text-secondary-dark: #9ba6a8;
+}
+
+/* Material Icons 基础样式 */
+.material-icons {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 48rpx;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'liga';
+}
+
+.material-icons.fill {
+  font-variation-settings: 'FILL' 1;
+}
+
+/* 全局容器和布局 */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--brand-offwhite) 0%, #e8f4e8 100%);
+}
+
+.container {
+  padding: 32rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 32rpx;
+  padding: 32rpx;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+  color: #fff;
+  border: none;
+  border-radius: 48rpx;
+  padding: 24rpx 48rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.btn-primary:active {
+  opacity: 0.8;
+}
+
+.text-primary {
+  color: #8B4513;
+}
+
+.text-secondary {
+  color: #666;
+}
+
+.text-muted {
+  color: #999;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.mt-16 {
+  margin-top: 16rpx;
+}
+
+.mt-32 {
+  margin-top: 32rpx;
+}
+
+.mb-16 {
+  margin-bottom: 16rpx;
+}
+
+.mb-32 {
+  margin-bottom: 32rpx;
+}
