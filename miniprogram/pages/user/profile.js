@@ -24,30 +24,60 @@ Page({
         throw new Error('云开发未初始化')
       }
 
-      // 从云函数获取用户信息
-      const response = await wx.cloud.callFunction({
-        name: 'getUserInfo',
-        data: { action: 'profile' }
-      })
+      // 暂时使用本地存储的用户信息，待云函数实现后切换
+      const userInfo = wx.getStorageSync('userInfo')
+      const memberInfo = wx.getStorageSync('memberInfo')
 
-      if (response.result && response.result.errcode === 0) {
+      if (userInfo) {
         this.setData({
-          userInfo: response.result.data.userInfo,
-          memberLevel: response.result.data.memberLevel,
-          statistics: response.result.data.statistics,
-          pendingOrders: response.result.data.statistics.pendingOrders || 0,
-          availableCoupons: response.result.data.statistics.availableCoupons || 0
+          userInfo: userInfo,
+          memberLevel: memberInfo || this.getDefaultMemberLevel(),
+          statistics: this.getDefaultStatistics(),
+          pendingOrders: 0,
+          availableCoupons: 0
         })
       } else {
         // 使用默认数据
         this.setDefaultData()
       }
+
+      // TODO: 云函数实现后启用此代码
+      // const response = await wx.cloud.callFunction({
+      //   name: 'getUserInfo',
+      //   data: { action: 'profile' }
+      // })
+      // if (response.result && response.result.errcode === 0) {
+      //   this.setData({
+      //     userInfo: response.result.data.userInfo,
+      //     memberLevel: response.result.data.memberLevel,
+      //     statistics: response.result.data.statistics,
+      //     pendingOrders: response.result.data.statistics.pendingOrders || 0,
+      //     availableCoupons: response.result.data.statistics.availableCoupons || 0
+      //   })
+      // }
+
     } catch (error) {
       console.error('获取用户信息失败:', error)
       // 使用默认数据
       this.setDefaultData()
     } finally {
       this.setData({ loading: false })
+    }
+  },
+
+  getDefaultMemberLevel() {
+    return {
+      name: '品茶客',
+      discount: 9,
+      benefits: ['新品优先体验', '专属客服', '生日特惠', '积分翻倍']
+    }
+  },
+
+  getDefaultStatistics() {
+    return {
+      totalAmount: '1288',
+      orderCount: 28,
+      avgOrderAmount: '46'
     }
   },
 

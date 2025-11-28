@@ -406,8 +406,8 @@ page {
   line-height: 1;
 }
 
-/* 响应式设计 */
-@media (max-width: 375px) {
+/* 响应式设计 - 修复媒体查询语法 */
+@media screen and (max-width: 750rpx) {
   .profile-card {
     margin: -20rpx 20rpx 20rpx;
   }
