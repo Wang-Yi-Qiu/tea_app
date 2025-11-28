@@ -1,467 +1,173 @@
-/* pages/user/profile/index.wxss - 简化版个人中心样式 */
+/* pages/profile/profile.wxss */
 
-/* 全局样式 */
-page {
-  background: linear-gradient(180deg, #f8f6f0 0%, #faf8f3 100%);
-  font-family: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-  line-height: 1.6;
-}
-
-/* 主容器 */
 .profile-container {
-  position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  background-color: #f8f6f6;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Sans SC', sans-serif;
 }
 
-/* 顶部装饰区域 */
-.header-decoration {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200rpx;
-  background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
-  border-radius: 0 0 40rpx 40rpx;
-  overflow: hidden;
+/* Top App Bar */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 32rpx 16rpx;
+  background-color: #f8f6f6;
 }
 
-.decoration-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image:
-    repeating-linear-gradient(45deg, transparent, transparent 20rpx, rgba(255, 255, 255, 0.03) 20rpx, rgba(255, 255, 255, 0.03) 40rpx),
-    repeating-linear-gradient(-45deg, transparent, transparent 20rpx, rgba(255, 255, 255, 0.03) 20rpx, rgba(255, 255, 255, 0.03) 40rpx);
-  opacity: 0.6;
+.app-bar-left {
+  width: 96rpx;
 }
 
-/* 用户信息卡片 */
-.profile-card {
+.app-bar-title {
+  flex: 1;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #2a1b18;
+}
+
+.app-bar-right {
+  width: 96rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96rpx;
+  height: 96rpx;
+  background-color: transparent;
+}
+
+/* Profile Header */
+.profile-header {
+  padding: 32rpx;
+  margin-top: 32rpx;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.avatar-container {
   position: relative;
-  margin: -30rpx 30rpx 30rpx;
-  background: #ffffff;
-  border-radius: 24rpx;
-  box-shadow: 0 6rpx 30rpx rgba(139, 69, 19, 0.08);
-  overflow: hidden;
-  z-index: 5;
 }
 
-.card-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #ffffff 0%, #faf8f3 100%);
-}
-
-.ink-splash {
-  position: absolute;
-  top: -60rpx;
-  right: -60rpx;
-  width: 180rpx;
-  height: 180rpx;
-  background: radial-gradient(circle, rgba(139, 69, 19, 0.06) 0%, transparent 70%);
+.avatar {
+  width: 192rpx;
+  height: 192rpx;
   border-radius: 50%;
+  border: 8rpx solid #e5dcd9;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.profile-content {
-  position: relative;
-  padding: 50rpx 30rpx 40rpx;
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.username {
+  font-size: 44rpx;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #2a1b18;
   text-align: center;
 }
 
-/* 用户头像 */
-.avatar-container {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 30rpx;
+.user-desc {
+  margin-top: 16rpx;
+  font-size: 32rpx;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #6e5a55;
+  text-align: center;
 }
 
-.user-avatar {
-  width: 140rpx;
-  height: 140rpx;
-  border-radius: 50%;
-  border: 4rpx solid rgba(139, 69, 19, 0.15);
-  box-shadow: 0 6rpx 24rpx rgba(139, 69, 19, 0.12);
+/* Spacer */
+.spacer {
+  height: 64rpx;
 }
 
-.avatar-glow {
-  position: absolute;
-  top: -6rpx;
-  left: -6rpx;
-  right: -6rpx;
-  bottom: -6rpx;
-  border: 2rpx solid rgba(139, 69, 19, 0.2);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-/* 用户基本信息 */
-.user-main-info {
-  margin-bottom: 30rpx;
-}
-
-.user-name {
-  font-size: 40rpx;
-  font-weight: 600;
-  color: #2a1b18;
-  margin-bottom: 12rpx;
-  letter-spacing: 1rpx;
-}
-
-.user-title {
-  font-size: 24rpx;
-  color: #8B7355;
-  line-height: 1.4;
-  margin-bottom: 24rpx;
-}
-
-.member-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 12rpx;
-  padding: 16rpx 24rpx;
-  background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-  border-radius: 50rpx;
-  box-shadow: 0 4rpx 16rpx rgba(139, 69, 19, 0.15);
-}
-
-.member-level {
-  font-size: 24rpx;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 1rpx;
-}
-
-.member-benefit {
-  font-size: 20rpx;
-  color: rgba(255, 255, 255, 0.9);
-  margin-left: 8rpx;
-}
-
-/* 用户统计 */
-.user-stats {
-  display: flex;
-  justify-content: center;
-  gap: 20rpx;
-  margin-bottom: 30rpx;
-}
-
-.stat-item {
+/* List Items Section */
+.list-section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-.stat-number {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #8B4513;
-  margin-bottom: 6rpx;
-}
-
-.stat-label {
-  font-size: 20rpx;
-  color: #8B7355;
-}
-
-.stat-divider {
-  width: 2rpx;
-  height: 50rpx;
-  background: rgba(139, 115, 85, 0.15);
-}
-
-/* 会员权益展示 */
-.benefits-section {
-  margin: 0 30rpx 40rpx;
-}
-
-.section-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24rpx;
-}
-
-.section-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #2a1b18;
-  margin-bottom: 6rpx;
-  letter-spacing: 1rpx;
-}
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  padding: 0 32rpx;
   gap: 16rpx;
 }
 
-.benefit-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
-  padding: 24rpx 16rpx;
-  border-radius: 16rpx;
-  border: 2rpx solid rgba(139, 69, 19, 0.08);
+.list-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.benefit-card:active {
-  transform: translateY(-4rpx);
-  box-shadow: 0 8rpx 20rpx rgba(139, 69, 19, 0.12);
-}
-
-.benefit-icon {
-  width: 50rpx;
-  height: 50rpx;
-  border-radius: 12rpx;
-  background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-  margin-bottom: 12rpx;
-  position: relative;
-}
-
-.benefit-icon::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  border: 1rpx dashed rgba(139, 69, 19, 0.3);
-  border-radius: 12rpx;
-}
-
-.benefit-name {
-  font-size: 20rpx;
-  color: #2a1b18;
-  font-weight: 500;
-  line-height: 1.3;
-}
-
-/* 简化版功能入口 */
-.functions-section {
-  margin: 0 30rpx 60rpx;
-}
-
-.function-grid-simple {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20rpx;
-}
-
-.function-item-simple {
-  background: #ffffff;
-  border-radius: 20rpx;
-  padding: 24rpx 20rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border: 2rpx solid transparent;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.function-item-simple:active {
-  transform: translateY(-4rpx);
-  box-shadow: 0 6rpx 20rpx rgba(139, 69, 19, 0.1);
-  border-color: rgba(139, 69, 19, 0.1);
-}
-
-.function-icon-simple {
-  width: 60rpx;
-  height: 60rpx;
+  justify-content: space-between;
+  gap: 32rpx;
+  background-color: transparent;
+  padding: 24rpx 32rpx;
+  min-height: 112rpx;
   border-radius: 16rpx;
+  border: 2rpx solid #e5dcd9;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.item-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28rpx;
-  color: #ffffff;
-  margin-bottom: 12rpx;
-  position: relative;
-}
-
-/* 简化版图标样式 */
-.order-icon-simple {
-  background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-}
-
-.favorite-icon-simple {
-  background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
-}
-
-.address-icon-simple {
-  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
-}
-
-.service-icon-simple {
-  background: linear-gradient(135deg, #8B008B 0%, #9932CC 100%);
-}
-
-.icon-badge-simple {
-  position: absolute;
-  top: -6rpx;
-  right: -6rpx;
-  min-width: 30rpx;
-  height: 30rpx;
-  background: #FF6347;
-  color: #ffffff;
-  border-radius: 15rpx;
-  font-size: 18rpx;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 6rpx;
-  box-shadow: 0 3rpx 10rpx rgba(255, 99, 71, 0.3);
-  animation: bounce 2s infinite;
-}
-
-.service-status-simple {
-  position: absolute;
-  bottom: -6rpx;
-  right: -6rpx;
-  width: 10rpx;
-  height: 10rpx;
-  background: #2E8B57;
-  border-radius: 50%;
-  border: 2rpx solid #ffffff;
-  animation: pulse 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4rpx); }
-}
-
-.function-name-simple {
-  font-size: 24rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  background-color: #efe6e4;
   color: #2a1b18;
-  font-weight: 500;
-  margin-bottom: 12rpx;
-  line-height: 1.2;
+  flex-shrink: 0;
 }
 
-.function-arrow-simple {
-  width: 16rpx;
-  height: 16rpx;
-  border-right: 2rpx solid #a89995;
-  border-bottom: 2rpx solid #a89995;
-  transform: rotate(-45deg);
-  margin-top: auto;
-  opacity: 0.6;
-}
-
-/* 底部装饰 */
-.footer-decoration {
-  margin: 60rpx 30rpx 0;
-  padding: 30rpx 0;
-  text-align: center;
-}
-
-.tea-leaf-decoration {
-  display: inline-block;
-  padding: 20rpx 24rpx;
-  border: 2rpx solid #8B4513;
-  border-radius: 50%;
-  background: rgba(139, 69, 19, 0.05);
-  position: relative;
-  font-size: 24rpx;
-  color: #8B4513;
-  font-weight: 600;
-  letter-spacing: 2rpx;
-}
-
-.tea-leaf-decoration::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-15deg);
-  width: 120%;
-  height: 120%;
-  border: 2rpx dashed rgba(139, 69, 19, 0.2);
-  border-radius: 50%;
-}
-
-/* 图标字体 */
-.iconfont {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  font-style: normal;
+.item-text {
+  flex: 1;
+  font-size: 32rpx;
   font-weight: normal;
-  line-height: 1;
+  line-height: 1.5;
+  color: #2a1b18;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-/* 响应式设计 - 修复媒体查询语法 */
-@media screen and (max-width: 750rpx) {
-  .profile-card {
-    margin: -20rpx 20rpx 20rpx;
-  }
-
-  .benefits-section,
-  .functions-section {
-    margin: 0 20rpx 30rpx;
-  }
-
-  .function-grid-simple {
-    grid-template-columns: 1fr;
-    gap: 16rpx;
-  }
-
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12rpx;
-  }
-
-  .profile-content {
-    padding: 40rpx 20rpx 30rpx;
-  }
-
-  .user-stats {
-    flex-direction: column;
-    gap: 16rpx;
-  }
+.item-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  color: #6e5a55;
 }
 
-/* 交互动画 */
-.function-item-simple {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2);
+.iconfont {
+  font-size: 48rpx;
+  /* 使用小程序内置图标或者emoji作为备用 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-.function-item-simple:active {
-  transform: translateY(-4rpx) scale(1.02);
-}
-
-/* 阴影效果 */
-.profile-card {
-  box-shadow:
-    0 3rpx 15rpx rgba(139, 69, 19, 0.06),
-    0 6rpx 25rpx rgba(139, 69, 19, 0.04),
-    0 12rpx 50rpx rgba(139, 69, 19, 0.02);
-}
-
-.benefit-card {
-  box-shadow:
-    0 2rpx 6rpx rgba(139, 69, 19, 0.04),
-    0 3rpx 12rpx rgba(139, 69, 19, 0.02);
-}
-
-/* 无障碍优化 */
-.function-item-simple:focus-within {
-  outline: 2rpx solid #8B4513;
-  outline-offset: 4rpx;
+.arrow {
+  font-size: 28rpx;
 }

@@ -1,148 +1,133 @@
-// pages/user/profile/index.js - 简化版个人中心
-const app = getApp()
-
+// pages/profile/profile.js
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    userInfo: null,
-    memberLevel: null,
-    statistics: null,
-    pendingOrders: 0,
-    availableCoupons: 0,
-    loading: false
-  },
-
-  onLoad() {
-    this.loadUserInfo()
-  },
-
-  async loadUserInfo() {
-    this.setData({ loading: true })
-
-    try {
-      // 检查云开发是否初始化
-      if (!wx.cloud) {
-        throw new Error('云开发未初始化')
-      }
-
-      // 暂时使用本地存储的用户信息，待云函数实现后切换
-      const userInfo = wx.getStorageSync('userInfo')
-      const memberInfo = wx.getStorageSync('memberInfo')
-
-      if (userInfo) {
-        this.setData({
-          userInfo: userInfo,
-          memberLevel: memberInfo || this.getDefaultMemberLevel(),
-          statistics: this.getDefaultStatistics(),
-          pendingOrders: 0,
-          availableCoupons: 0
-        })
-      } else {
-        // 使用默认数据
-        this.setDefaultData()
-      }
-
-      // TODO: 云函数实现后启用此代码
-      // const response = await wx.cloud.callFunction({
-      //   name: 'getUserInfo',
-      //   data: { action: 'profile' }
-      // })
-      // if (response.result && response.result.errcode === 0) {
-      //   this.setData({
-      //     userInfo: response.result.data.userInfo,
-      //     memberLevel: response.result.data.memberLevel,
-      //     statistics: response.result.data.statistics,
-      //     pendingOrders: response.result.data.statistics.pendingOrders || 0,
-      //     availableCoupons: response.result.data.statistics.availableCoupons || 0
-      //   })
-      // }
-
-    } catch (error) {
-      console.error('获取用户信息失败:', error)
-      // 使用默认数据
-      this.setDefaultData()
-    } finally {
-      this.setData({ loading: false })
-    }
-  },
-
-  getDefaultMemberLevel() {
-    return {
-      name: '品茶客',
-      discount: 9,
-      benefits: ['新品优先体验', '专属客服', '生日特惠', '积分翻倍']
-    }
-  },
-
-  getDefaultStatistics() {
-    return {
-      totalAmount: '1288',
-      orderCount: 28,
-      avgOrderAmount: '46'
-    }
-  },
-
-  setDefaultData() {
-    const defaultData = {
-      userInfo: {
-        nickname: '茶友用户',
-        avatarUrl: '/images/default-avatar.png'
+    userInfo: {
+      username: '清风徐来',
+      avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDLw7nExw8UfY8H_YtQOGGdA93CF7NYhVK61xtQ44TjAnKA9pUmwg1-1BeWajtGYQ5YJ0h28OrAwKw-fiX_tDUy0C7u_Zal6JvFS7TsUiRLl0FDhQCVhZKK7iICgvIbBdtwkIkDeyc4_CCMzaBjG3e8lRyeCbH0LCUGrvTZgJas_6xUP3Stkg9a4rwh5_L9WkMR5sdFhr6xp3jf6B0HP1zXi_F5tyiRHPF_7aBYSd65mjGcHvTCBwVw9cA7IGgo_jofd8ZHab03kCgP',
+      description: '查看并编辑个人资料'
+    },
+    menuItems: [
+      {
+        id: 'orders',
+        icon: '📋',
+        text: '我的订单'
       },
-      memberLevel: {
-        name: '品茶客',
-        discount: 9,
-        benefits: ['新品优先体验', '专属客服', '生日特惠', '积分翻倍']
+      {
+        id: 'favorites',
+        icon: '❤️',
+        text: '我的收藏'
       },
-      statistics: {
-        totalAmount: '1288',
-        orderCount: 28,
-        avgOrderAmount: '46',
-        pendingOrders: 2,
-        availableCoupons: 5
+      {
+        id: 'address',
+        icon: '📍',
+        text: '地址管理'
+      },
+      {
+        id: 'service',
+        icon: '💬',
+        text: '联系客服'
       }
+    ]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
+  },
+
+  /**
+   * 菜单项点击处理函数
+   */
+  onMenuItemTap(e) {
+    const itemId = e.currentTarget.dataset.id;
+
+    switch(itemId) {
+      case 'orders':
+        wx.navigateTo({
+          url: '/pages/orders/orders'
+        });
+        break;
+      case 'favorites':
+        wx.navigateTo({
+          url: '/pages/favorites/favorites'
+        });
+        break;
+      case 'address':
+        wx.navigateTo({
+          url: '/pages/address/address'
+        });
+        break;
+      case 'service':
+        wx.makePhoneCall({
+          phoneNumber: '400-123-4567'
+        });
+        break;
+      default:
+        console.log('未知菜单项:', itemId);
     }
-
-    this.setData({
-      userInfo: defaultData.userInfo,
-      memberLevel: defaultData.memberLevel,
-      statistics: defaultData.statistics,
-      pendingOrders: defaultData.statistics.pendingOrders,
-      availableCoupons: defaultData.statistics.availableCoupons
-    })
   },
 
-  onOrdersTap() {
-    wx.navigateTo({
-      url: '/pages/user/orders'
-    })
-  },
-
-  onPointsTap() {
-    wx.navigateTo({
-      url: '/pages/user/points'
-    })
-  },
-
-  onAddressTap() {
-    wx.navigateTo({
-      url: '/pages/user/address'
-    })
-  },
-
-  onServiceTap() {
-    wx.navigateTo({
-      url: '/pages/customer-service'
-    })
-  },
-
-  onFavoriteTap() {
-    wx.navigateTo({
-      url: '/pages/user/favorites'
-    })
-  },
-
+  /**
+   * 设置按钮点击处理函数
+   */
   onSettingsTap() {
     wx.navigateTo({
-      url: '/pages/user/settings'
-    })
+      url: '/pages/settings/settings'
+    });
   }
 })
