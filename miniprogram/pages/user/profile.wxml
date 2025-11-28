@@ -1,0 +1,116 @@
+<!--pages/user/profile.wxml - 简化版个人中心-->
+<view class="profile-container">
+  <!-- 顶部装饰区域 -->
+  <view class="header-decoration">
+    <view class="decoration-pattern"></view>
+  </view>
+
+  <!-- 用户信息卡片 -->
+  <view class="profile-card">
+    <view class="card-background">
+      <view class="ink-splash"></view>
+    </view>
+
+    <view class="profile-content">
+      <!-- 用户头像 -->
+      <view class="avatar-container">
+        <image src="{{userInfo.avatarUrl}}" mode="aspectFill" class="user-avatar" />
+        <view class="avatar-glow"></view>
+      </view>
+
+      <!-- 用户基本信息 -->
+      <view class="user-main-info">
+        <view class="user-name">{{userInfo.nickname}}</view>
+        <view class="user-title">品茶论道 • 雅致生活</view>
+
+        <!-- 会员等级 -->
+        <view class="member-badge">
+          <text class="member-level">{{memberLevel.name}}</text>
+          <text class="member-benefit">{{memberLevel.discount}}折优惠</text>
+        </view>
+      </view>
+
+      <!-- 用户统计 -->
+      <view class="user-stats">
+        <view class="stat-item">
+          <text class="stat-number">¥{{statistics.totalAmount}}</text>
+          <text class="stat-label">累计消费</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-number">{{statistics.orderCount}}</text>
+          <text class="stat-label">订单数</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-number">¥{{statistics.avgOrderAmount}}</text>
+          <text class="stat-label">客单价</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 会员权益展示 -->
+    <view class="benefits-section">
+      <view class="section-header">
+        <text class="section-title">会员专享</text>
+      </view>
+      <view class="benefits-grid">
+        <view wx:for="{{memberLevel.benefits}}" wx:key="*this" class="benefit-card">
+          <view class="benefit-icon"></view>
+          <text class="benefit-name">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 核心功能入口 - 简化版 -->
+    <view class="functions-section">
+      <view class="section-header">
+        <text class="section-title">我的服务</text>
+      </view>
+      <view class="function-grid-simple">
+        <!-- 我的订单 -->
+        <view class="function-item-simple" bindtap="onOrdersTap">
+          <view class="function-icon-simple order-icon-simple">
+            <text class="iconfont">📋</text>
+            <view class="icon-badge-simple" wx:if="{{pendingOrders > 0}}">{{pendingOrders}}</view>
+          </view>
+          <text class="function-name-simple">我的订单</text>
+          <view class="function-arrow-simple"></view>
+        </view>
+
+        <!-- 我的收藏 -->
+        <view class="function-item-simple" bindtap="onFavoriteTap">
+          <view class="function-icon-simple favorite-icon-simple">
+            <text class="iconfont">❤️</text>
+          </view>
+          <text class="function-name-simple">我的收藏</text>
+          <view class="function-arrow-simple"></view>
+        </view>
+
+        <!-- 地址管理 -->
+        <view class="function-item-simple" bindtap="onAddressTap">
+          <view class="function-icon-simple address-icon-simple">
+            <text class="iconfont">📍</text>
+          </view>
+          <text class="function-name-simple">地址管理</text>
+          <view class="function-arrow-simple"></view>
+        </view>
+
+        <!-- 客服中心 -->
+        <view class="function-item-simple" bindtap="onServiceTap">
+          <view class="function-icon-simple service-icon-simple">
+            <text class="iconfont">💬</text>
+            <view class="service-status-simple online"></view>
+          </view>
+          <text class="function-name-simple">联系客服</text>
+          <view class="function-arrow-simple"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部装饰 -->
+    <view class="footer-decoration">
+      <view class="tea-leaf-decoration">茶韵</view>
+    </view>
+  </view>
+</view>

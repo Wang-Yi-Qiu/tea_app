@@ -1,4 +1,4 @@
-/* pages/user/profile/index.wxss - 重新设计的个人中心样式 */
+/* pages/user/profile/index.wxss - 简化版个人中心样式 */
 
 /* 全局样式 */
 page {
@@ -20,9 +20,9 @@ page {
   top: 0;
   left: 0;
   right: 0;
-  height: 280rpx;
+  height: 200rpx;
   background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
-  border-radius: 0 0 60rpx 60rpx;
+  border-radius: 0 0 40rpx 40rpx;
   overflow: hidden;
 }
 
@@ -33,18 +33,18 @@ page {
   right: 0;
   bottom: 0;
   background-image:
-    repeating-linear-gradient(45deg, transparent, transparent 20rpx, rgba(255, 255, 255, 0.05) 20rpx, rgba(255, 255, 255, 0.05) 40rpx),
-    repeating-linear-gradient(-45deg, transparent, transparent 20rpx, rgba(255, 255, 255, 0.05) 20rpx, rgba(255, 255, 255, 0.05) 40rpx);
+    repeating-linear-gradient(45deg, transparent, transparent 20rpx, rgba(255, 255, 255, 0.03) 20rpx, rgba(255, 255, 255, 0.03) 40rpx),
+    repeating-linear-gradient(-45deg, transparent, transparent 20rpx, rgba(255, 255, 255, 0.03) 20rpx, rgba(255, 255, 255, 0.03) 40rpx);
   opacity: 0.6;
 }
 
 /* 用户信息卡片 */
 .profile-card {
   position: relative;
-  margin: -40rpx 30rpx 30rpx;
+  margin: -30rpx 30rpx 30rpx;
   background: #ffffff;
-  border-radius: 32rpx;
-  box-shadow: 0 8rpx 40rpx rgba(139, 69, 19, 0.08);
+  border-radius: 24rpx;
+  box-shadow: 0 6rpx 30rpx rgba(139, 69, 19, 0.08);
   overflow: hidden;
   z-index: 5;
 }
@@ -60,17 +60,17 @@ page {
 
 .ink-splash {
   position: absolute;
-  top: -80rpx;
-  right: -80rpx;
-  width: 240rpx;
-  height: 240rpx;
-  background: radial-gradient(circle, rgba(139, 69, 19, 0.08) 0%, transparent 70%);
+  top: -60rpx;
+  right: -60rpx;
+  width: 180rpx;
+  height: 180rpx;
+  background: radial-gradient(circle, rgba(139, 69, 19, 0.06) 0%, transparent 70%);
   border-radius: 50%;
 }
 
 .profile-content {
   position: relative;
-  padding: 60rpx 30rpx 50rpx;
+  padding: 50rpx 30rpx 40rpx;
   text-align: center;
 }
 
@@ -82,19 +82,19 @@ page {
 }
 
 .user-avatar {
-  width: 160rpx;
-  height: 160rpx;
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 50%;
-  border: 6rpx solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8rpx 32rpx rgba(139, 69, 19, 0.15);
+  border: 4rpx solid rgba(139, 69, 19, 0.15);
+  box-shadow: 0 6rpx 24rpx rgba(139, 69, 19, 0.12);
 }
 
 .avatar-glow {
   position: absolute;
-  top: -8rpx;
-  left: -8rpx;
-  right: -8rpx;
-  bottom: -8rpx;
+  top: -6rpx;
+  left: -6rpx;
+  right: -6rpx;
+  bottom: -6rpx;
   border: 2rpx solid rgba(139, 69, 19, 0.2);
   border-radius: 50%;
   animation: pulse 2s infinite;
@@ -107,43 +107,43 @@ page {
 
 /* 用户基本信息 */
 .user-main-info {
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
 }
 
 .user-name {
-  font-size: 48rpx;
+  font-size: 40rpx;
   font-weight: 600;
   color: #2a1b18;
   margin-bottom: 12rpx;
-  letter-spacing: 2rpx;
+  letter-spacing: 1rpx;
 }
 
 .user-title {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #8B7355;
   line-height: 1.4;
-  margin-bottom: 30rpx;
+  margin-bottom: 24rpx;
 }
 
 .member-badge {
   display: inline-flex;
   align-items: center;
-  gap: 16rpx;
-  padding: 20rpx 32rpx;
+  gap: 12rpx;
+  padding: 16rpx 24rpx;
   background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-  border-radius: 100rpx;
-  box-shadow: 0 6rpx 20rpx rgba(139, 69, 19, 0.2);
+  border-radius: 50rpx;
+  box-shadow: 0 4rpx 16rpx rgba(139, 69, 19, 0.15);
 }
 
 .member-level {
-  font-size: 28rpx;
+  font-size: 24rpx;
   font-weight: 600;
   color: #ffffff;
   letter-spacing: 1rpx;
 }
 
 .member-benefit {
-  font-size: 24rpx;
+  font-size: 20rpx;
   color: rgba(255, 255, 255, 0.9);
   margin-left: 8rpx;
 }
@@ -153,7 +153,7 @@ page {
   display: flex;
   justify-content: center;
   gap: 20rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
 }
 
 .stat-item {
@@ -164,59 +164,53 @@ page {
 }
 
 .stat-number {
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-weight: 600;
   color: #8B4513;
-  margin-bottom: 8rpx;
+  margin-bottom: 6rpx;
 }
 
 .stat-label {
-  font-size: 22rpx;
+  font-size: 20rpx;
   color: #8B7355;
 }
 
 .stat-divider {
   width: 2rpx;
-  height: 60rpx;
+  height: 50rpx;
   background: rgba(139, 115, 85, 0.15);
 }
 
 /* 会员权益展示 */
 .benefits-section {
-  margin: 0 30rpx 30rpx;
+  margin: 0 30rpx 40rpx;
 }
 
 .section-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 32rpx;
+  margin-bottom: 24rpx;
 }
 
 .section-title {
-  font-size: 36rpx;
+  font-size: 30rpx;
   font-weight: 600;
   color: #2a1b18;
-  margin-bottom: 8rpx;
+  margin-bottom: 6rpx;
   letter-spacing: 1rpx;
-}
-
-.section-subtitle {
-  font-size: 24rpx;
-  color: #8B7355;
-  opacity: 0.8;
 }
 
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20rpx;
+  gap: 16rpx;
 }
 
 .benefit-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8f6f0 100%);
-  padding: 30rpx 20rpx;
-  border-radius: 20rpx;
+  padding: 24rpx 16rpx;
+  border-radius: 16rpx;
   border: 2rpx solid rgba(139, 69, 19, 0.08);
   display: flex;
   flex-direction: column;
@@ -226,16 +220,16 @@ page {
 }
 
 .benefit-card:active {
-  transform: translateY(-6rpx);
-  box-shadow: 0 12rpx 30rpx rgba(139, 69, 19, 0.12);
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 20rpx rgba(139, 69, 19, 0.12);
 }
 
 .benefit-icon {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 16rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 12rpx;
   background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
   position: relative;
 }
 
@@ -245,34 +239,34 @@ page {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 120%;
-  height: 120%;
+  width: 100%;
+  height: 100%;
   border: 1rpx dashed rgba(139, 69, 19, 0.3);
-  border-radius: 20rpx;
+  border-radius: 12rpx;
 }
 
 .benefit-name {
-  font-size: 24rpx;
+  font-size: 20rpx;
   color: #2a1b18;
   font-weight: 500;
   line-height: 1.3;
 }
 
-/* 功能入口 */
+/* 简化版功能入口 */
 .functions-section {
   margin: 0 30rpx 60rpx;
 }
 
-.function-grid {
+.function-grid-simple {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24rpx;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
 }
 
-.function-item {
+.function-item-simple {
   background: #ffffff;
-  border-radius: 24rpx;
-  padding: 30rpx 20rpx;
+  border-radius: 20rpx;
+  padding: 24rpx 20rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -282,75 +276,71 @@ page {
   position: relative;
 }
 
-.function-item:active {
+.function-item-simple:active {
   transform: translateY(-4rpx);
-  box-shadow: 0 8rpx 24rpx rgba(139, 69, 19, 0.1);
+  box-shadow: 0 6rpx 20rpx rgba(139, 69, 19, 0.1);
   border-color: rgba(139, 69, 19, 0.1);
 }
 
-.function-icon {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 20rpx;
+.function-icon-simple {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 36rpx;
+  font-size: 28rpx;
   color: #ffffff;
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
   position: relative;
 }
 
-/* 不同功能项的颜色主题 */
-.order-icon {
+/* 简化版图标样式 */
+.order-icon-simple {
   background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
 }
 
-.points-icon {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
-}
-
-.address-icon {
-  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
-}
-
-.favorite-icon {
+.favorite-icon-simple {
   background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
 }
 
-.coupon-icon {
-  background: linear-gradient(135deg, #8B7355 0%, #6C757D 100%);
+.address-icon-simple {
+  background: linear-gradient(135deg, #2E8B57 0%, #3CB371 100%);
 }
 
-.service-icon {
+.service-icon-simple {
   background: linear-gradient(135deg, #8B008B 0%, #9932CC 100%);
 }
 
-.help-icon {
-  background: linear-gradient(135deg, #4682B4 0%, #5F9EA0 100%);
-}
-
-.settings-icon {
-  background: linear-gradient(135deg, #6C757D 0%, #95A5A6 100%);
-}
-
-.icon-badge {
+.icon-badge-simple {
   position: absolute;
-  top: -8rpx;
-  right: -8rpx;
-  min-width: 36rpx;
-  height: 36rpx;
-  background: #8B7355;
+  top: -6rpx;
+  right: -6rpx;
+  min-width: 30rpx;
+  height: 30rpx;
+  background: #FF6347;
   color: #ffffff;
-  border-radius: 18rpx;
-  font-size: 20rpx;
+  border-radius: 15rpx;
+  font-size: 18rpx;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 8rpx;
-  box-shadow: 0 4rpx 12rpx rgba(139, 115, 85, 0.3);
+  padding: 0 6rpx;
+  box-shadow: 0 3rpx 10rpx rgba(255, 99, 71, 0.3);
   animation: bounce 2s infinite;
+}
+
+.service-status-simple {
+  position: absolute;
+  bottom: -6rpx;
+  right: -6rpx;
+  width: 10rpx;
+  height: 10rpx;
+  background: #2E8B57;
+  border-radius: 50%;
+  border: 2rpx solid #ffffff;
+  animation: pulse 2s infinite;
 }
 
 @keyframes bounce {
@@ -358,31 +348,19 @@ page {
   50% { transform: translateY(-4rpx); }
 }
 
-.service-status {
-  position: absolute;
-  bottom: -6rpx;
-  right: -6rpx;
-  width: 12rpx;
-  height: 12rpx;
-  background: #2E8B57;
-  border-radius: 50%;
-  border: 2rpx solid #ffffff;
-  animation: pulse 2s infinite;
-}
-
-.function-name {
-  font-size: 26rpx;
+.function-name-simple {
+  font-size: 24rpx;
   color: #2a1b18;
   font-weight: 500;
   margin-bottom: 12rpx;
   line-height: 1.2;
 }
 
-.function-arrow {
-  width: 20rpx;
-  height: 20rpx;
-  border-right: 3rpx solid #a89995;
-  border-bottom: 3rpx solid #a89995;
+.function-arrow-simple {
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 2rpx solid #a89995;
+  border-bottom: 2rpx solid #a89995;
   transform: rotate(-45deg);
   margin-top: auto;
   opacity: 0.6;
@@ -391,21 +369,21 @@ page {
 /* 底部装饰 */
 .footer-decoration {
   margin: 60rpx 30rpx 0;
-  padding: 40rpx 0;
+  padding: 30rpx 0;
   text-align: center;
 }
 
 .tea-leaf-decoration {
   display: inline-block;
-  padding: 24rpx 32rpx;
-  border: 3rpx solid #8B4513;
+  padding: 20rpx 24rpx;
+  border: 2rpx solid #8B4513;
   border-radius: 50%;
   background: rgba(139, 69, 19, 0.05);
   position: relative;
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #8B4513;
   font-weight: 600;
-  letter-spacing: 4rpx;
+  letter-spacing: 2rpx;
 }
 
 .tea-leaf-decoration::before {
@@ -414,8 +392,8 @@ page {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-15deg);
-  width: 140%;
-  height: 140%;
+  width: 120%;
+  height: 120%;
   border: 2rpx dashed rgba(139, 69, 19, 0.2);
   border-radius: 50%;
 }
@@ -431,21 +409,22 @@ page {
 /* 响应式设计 */
 @media (max-width: 375px) {
   .profile-card {
-    margin: -30rpx 20rpx 20rpx;
+    margin: -20rpx 20rpx 20rpx;
   }
 
   .benefits-section,
   .functions-section {
-    margin: 0 20rpx 40rpx;
+    margin: 0 20rpx 30rpx;
   }
 
-  .function-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20rpx;
+  .function-grid-simple {
+    grid-template-columns: 1fr;
+    gap: 16rpx;
   }
 
   .benefits-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12rpx;
   }
 
   .profile-content {
@@ -459,30 +438,30 @@ page {
 }
 
 /* 交互动画 */
-.function-item {
+.function-item-simple {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2);
 }
 
-.function-item:active {
+.function-item-simple:active {
   transform: translateY(-4rpx) scale(1.02);
 }
 
 /* 阴影效果 */
 .profile-card {
   box-shadow:
-    0 4rpx 20rpx rgba(139, 69, 19, 0.06),
-    0 8rpx 40rpx rgba(139, 69, 19, 0.04),
-    0 16rpx 60rpx rgba(139, 69, 19, 0.02);
+    0 3rpx 15rpx rgba(139, 69, 19, 0.06),
+    0 6rpx 25rpx rgba(139, 69, 19, 0.04),
+    0 12rpx 50rpx rgba(139, 69, 19, 0.02);
 }
 
 .benefit-card {
   box-shadow:
-    0 2rpx 8rpx rgba(139, 69, 19, 0.04),
-    0 4rpx 16rpx rgba(139, 69, 19, 0.02);
+    0 2rpx 6rpx rgba(139, 69, 19, 0.04),
+    0 3rpx 12rpx rgba(139, 69, 19, 0.02);
 }
 
 /* 无障碍优化 */
-.function-item:focus-within {
-  outline: 3rpx solid #8B4513;
-  outline-offset: 6rpx;
+.function-item-simple:focus-within {
+  outline: 2rpx solid #8B4513;
+  outline-offset: 4rpx;
 }
