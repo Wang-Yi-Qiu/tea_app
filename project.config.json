@@ -45,7 +45,7 @@
     "disableSWC": true
   },
   "appid": "wx1f30485fdec0081b",
-  "projectname": "quickstart-wx-cloud",
+  "projectname": "tea-app-miniprogram",
   "libVersion": "2.20.1",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {
